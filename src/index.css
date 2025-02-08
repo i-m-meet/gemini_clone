@@ -12,6 +12,12 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
+.result-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+.result-scrollbar {
+  scrollbar-width: none;  /* For Firefox */
+}
 
 #root{
   min-height: 100vh;
