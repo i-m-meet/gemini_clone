@@ -90,12 +90,15 @@ const Main = () => {
               />
               {loading ? (
                 <div className="w-screen flex flex-col gap-2.5">
-                    <hr className="rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] bg-[length:50px_800px_50px_800px] h-5"/>
-                    <hr className="rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] bg-[length:50px_800px_50px_800px] h-5"/>
-                    <hr className="rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] bg-[length:50px_800px_50px_800px] h-5"/>
+                  <hr className="animate-loader rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] bg-[length:50px_800px_50px_800px] h-5" />
+                  <hr className="animate-loader rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] bg-[length:50px_800px_50px_800px] h-5" />
+                  <hr className="animate-loader rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] bg-[length:50px_800px_50px_800px] h-5" />
                 </div>
               ) : (
-                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                <p
+                  dangerouslySetInnerHTML={{ __html: resultData }}
+                  className="text-[16px] "
+                ></p>
               )}
             </div>
           </div>

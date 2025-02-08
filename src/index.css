@@ -19,6 +19,19 @@
   scrollbar-width: none;  /* For Firefox */
 }
 
+@keyframes loader {
+  0%{
+    background-position: -800px;
+  }
+  100%{
+    background-position: 800px 0px;
+  }
+}
+
+.animate-loader{
+  animation: loader 2s linear infinite
+}
+
 #root{
   min-height: 100vh;
   display: flex;

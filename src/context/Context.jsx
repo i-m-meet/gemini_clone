@@ -22,9 +22,7 @@ const ContextProvider = ({children}) =>{
         setResultData(response)
         setLoading(false)
         setInput('')
-
     }
-
 
     const contextValue = {
         prevPrompts,
