@@ -25,7 +25,9 @@ const Main = () => {
       </div>
 
       <div className="max-w-225 m-auto">
-        <div className="mt-13 mb-13 text-6xl color-[#c4c7c5] text-gray-300 p-5">
+        {
+            !showResult? <>
+             <div className="mt-13 mb-13 text-6xl color-[#c4c7c5] text-gray-300 p-5">
           <p>
             <span className="custom-gradient">Hello, User</span>
           </p>
@@ -73,6 +75,18 @@ const Main = () => {
             />
           </div>
         </div>
+            </>: <div className="result">
+                <div className="result-title">
+                    <img src={assets.user_icon} alt=""  className="w-12 rounded-3xl"/>
+                    <p className="">{recentPrompt}</p>
+                </div>
+                <div className="result-data">
+                    <img src={assets.gemini_icon} alt="" className="w-12 rounded-3xl" />
+                    <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+                </div>
+            </div>
+        }
+       
         <div className="absolute bottom-0 w-full max-w-225 py-0 px-5 m-auto ">
           <div className="flex items-center justify-between gap-5 bg-[#f0f4f9] p-3 rounded-4xl">
             <input
