@@ -114,14 +114,14 @@ const Main = () => {
               value={input}
             />
             <div className="flex cursor-pointer gap-2">
-              <img src={assets.gallery_icon} alt="" className="w-6 h-6" />
-              <img src={assets.mic_icon} alt="" className="w-6 h-6" />
+              {(!input)? <><img src={assets.gallery_icon} alt="" className="w-6 h-6" />
+              <img src={assets.mic_icon} alt="" className="w-6 h-6" /></>:
               <img
                 src={assets.send_icon}
                 alt=""
                 className="w-6 h-6"
                 onClick={() => onSent()}
-              />
+              />}
             </div>
           </div>
           <p className="text-sm mt-4 mb-4 ml-13">
