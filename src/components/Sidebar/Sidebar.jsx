@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
+import { Context } from "../../context/Context";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {onSent, prevPrompts, setRecentPrompt} = useContext(Context)
 
   return (
     <div
@@ -31,19 +33,29 @@ const Sidebar = () => {
         </div>
 
         {/* Recent Section */}
-        <div className="flex flex-col gap-2">
-          {isOpen ? (
-            <p className="font-semibold text-gray-700">Recent</p>
-          ) : null}
-          <div className="flex items-center gap-2 p-3 pr-3 rounded-3xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer transition-all duration-300">
+        
+            
+          
+          {isOpen ? <div className="flex flex-col gap-2">
+          
+          <p className="font-semibold text-gray-700">Recent</p>
+          {
+              prevPrompts.map((prompt, index) => {
+                return(
+                  <div key={index} className="flex items-center gap-2 p-3 pr-3 rounded-3xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer transition-all duration-300">
             <img
               src={assets.message_icon}
               alt="Message Icon"
-              className="w-8 h-8"
+              className="w-6 h-6"
+              
             />
-            {isOpen ? <p>What is react...</p> : null}
+             <p>{prompt.slice(0,18)}...</p> 
           </div>
-        </div>
+                )
+              })
+            }
+           
+        </div>: null}
       </div>
 
       {/* Bottom Section (Help, History, Settings) */}

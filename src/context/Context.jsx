@@ -20,6 +20,7 @@ const ContextProvider = ({children}) =>{
     }
 
     const onSent = async(prompt) => {
+        setPrevPrompts(prev => [...prev, input])
         setResultData("");
         setLoading(true)
         setShowResult(true)
