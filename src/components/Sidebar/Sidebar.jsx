@@ -4,7 +4,11 @@ import { Context } from "../../context/Context";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {onSent, prevPrompts, setRecentPrompt} = useContext(Context)
+  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
+  const loadPrompt = async (prompt) => {
+    setRecentPrompt(prompt);
+    await onSent(prompt);
+  };
 
   return (
     <div
@@ -23,7 +27,7 @@ const Sidebar = () => {
         />
 
         {/* New Chat Button */}
-        <div className="mt-10 w-full flex items-center justify-center gap-4 py-4 px-4 bg-[#e6eaf1] rounded-3xl text-gray-900 text-md hover:bg-[#d0d8e2] cursor-pointer transition-all duration-300">
+        <div onClick={()=> newChat()}className="mt-10 w-full flex items-center justify-center gap-4 py-4 px-4 bg-[#e6eaf1] rounded-3xl text-gray-900 text-md hover:bg-[#d0d8e2] cursor-pointer transition-all duration-300">
           <img src={assets.plus_icon} alt="Plus Icon" className="w-6 h-8" />
           {isOpen ? (
             <p className="font-extralight text-gray-500 hover:text-gray-900 hover:font-semibold">
@@ -33,29 +37,28 @@ const Sidebar = () => {
         </div>
 
         {/* Recent Section */}
-        
-            
-          
-          {isOpen ? <div className="flex flex-col gap-2">
-          
-          <p className="font-semibold text-gray-700">Recent</p>
-          {
-              prevPrompts.map((prompt, index) => {
-                return(
-                  <div key={index} className="flex items-center gap-2 p-3 pr-3 rounded-3xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer transition-all duration-300">
-            <img
-              src={assets.message_icon}
-              alt="Message Icon"
-              className="w-6 h-6"
-              
-            />
-             <p>{prompt.slice(0,18)}...</p> 
+
+        {isOpen ? (
+          <div className="flex flex-col gap-2">
+            <p className="font-semibold text-gray-700">Recent</p>
+            {prevPrompts.map((prompt, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 p-3 pr-3 rounded-3xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer transition-all duration-300"
+                  onClick={()=> loadPrompt(prompt)}
+                >
+                  <img
+                    src={assets.message_icon}
+                    alt="Message Icon"
+                    className="w-6 h-6"
+                  />
+                  <p>{prompt.slice(0, 18)}...</p>
+                </div>
+              );
+            })}
           </div>
-                )
-              })
-            }
-           
-        </div>: null}
+        ) : null}
       </div>
 
       {/* Bottom Section (Help, History, Settings) */}
