@@ -1,6 +1,18 @@
+import { useContext } from "react";
 import { assets } from "../../assets/assets";
+import { Context } from "../../context/Context";
 
 const Main = () => {
+  const {
+    onSent,
+    recentPrompt,
+    showResult,
+    loading,
+    resultData,
+    setInput,
+    input,
+  } = useContext(Context);
+
   return (
     <div className="flex-1 min-h-screen pb-4 relative">
       <div className="flex items-center justify-between text-lg p-5 text-[#585858]">
@@ -67,11 +79,13 @@ const Main = () => {
               type="text"
               placeholder="Enter a prompt here"
               className=" flex-1 w-180 h-12 outline-none ml-3 text-gray-700"
+              onChange={(e) => setInput(e.target.value) }
+              value={input}
             />
             <div className="flex cursor-pointer gap-2">
               <img src={assets.gallery_icon} alt="" className="w-6 h-6" />
               <img src={assets.mic_icon} alt="" className="w-6 h-6" />
-              <img src={assets.send_icon} alt="" className="w-6 h-6" />
+              <img src={assets.send_icon} alt="" className="w-6 h-6"  onClick={() => onSent()}/>
             </div>
           </div>
           <p className="text-sm mt-4 mb-4 ml-13">
