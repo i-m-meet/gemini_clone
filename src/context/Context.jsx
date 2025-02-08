@@ -26,9 +26,9 @@ const ContextProvider = ({children}) =>{
         setRecentPrompt(input)
         const response = await run(input);
         let responseArray = response.split('**')
-        let newResponse
+        let newResponse = ""
         for(let i=0; i< responseArray.length; i++){
-            if(i === 0 || i%2 !== 1){
+            if(responseArray[i] && responseArray[i] !== "undefined" || i%2 !== 1){
                newResponse += responseArray[i]
         }else{
             newResponse += '<b>'+responseArray[i]+'</b>'
@@ -37,7 +37,7 @@ const ContextProvider = ({children}) =>{
         let newResponse2 = newResponse.split('*').join('</br>') 
         // setResultData(newResponse2)
         let newResponseArray = newResponse2.split(' ')
-        for(let i = 0 ; i < newResponse.length; i++){
+        for(let i = 0 ; i < newResponseArray.length; i++){
             const nextWord = newResponseArray[i]
             delayPara(i , nextWord + ' ')
         }
